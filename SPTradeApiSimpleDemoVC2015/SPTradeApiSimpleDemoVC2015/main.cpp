@@ -75,13 +75,13 @@ public:
 		//注册SP仿真交易账号，http://demo.spsystem.info:8000/DemoAcc/DemoAcc_API.php?lang=2
 
 		HostAddress = "demo.spsystem.info:8080";
-		UserName = "DEMO201801119A";
-		Password = "123456";
+		UserName = "DEMO201806119A";//公用测试账户。为了测试准确，请注册使用您自己的账户。
+		Password = "a123456";
 
 		AppID = "SPDEMO";
-		License = "5A5ED9D04A852";
+		License = "5B20847848D9D";
 
-		InstrumentID = "SIN8";
+		InstrumentID = "SIZ8";
 		ProductID = "SI";
 	}
 };

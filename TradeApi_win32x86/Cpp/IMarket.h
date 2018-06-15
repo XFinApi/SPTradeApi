@@ -39,6 +39,8 @@ namespace TradeApi
 }
 
 //////////////////////////////////////////////////////////////////////////
+#if !defined(SWIG)
+
 extern "C" XFINAPI XFinApi::TradeApi::IMarket* XFinApi_CreateMarketApi_Impl(const char *path, const char *ver, int *errCode);
 
 // 加载行情模块
@@ -49,3 +51,10 @@ inline XFinApi::TradeApi::IMarket* XFinApi_CreateMarketApi(const char *path, int
 
 // 释放行情模块
 extern "C" XFINAPI void XFinApi_ReleaseMarketApi(XFinApi::TradeApi::IMarket *ptr);
+
+#else
+
+XFinApi::TradeApi::IMarket* XFinApi_CreateMarketApi(const char *path, int *errCode);
+void XFinApi_ReleaseMarketApi(XFinApi::TradeApi::IMarket *ptr);
+
+#endif

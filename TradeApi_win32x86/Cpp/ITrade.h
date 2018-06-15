@@ -50,6 +50,8 @@ namespace TradeApi
 }
 
 //////////////////////////////////////////////////////////////////////////
+#if !defined(SWIG)
+
 extern "C" XFINAPI XFinApi::TradeApi::ITrade* XFinApi_CreateTradeApi_Impl(const char *path, const char *ver, int *errCode);
 
 // 加载交易模块
@@ -60,3 +62,10 @@ inline XFinApi::TradeApi::ITrade* XFinApi_CreateTradeApi(const char *path, int *
 
 // 释放交易模块
 extern "C" XFINAPI void XFinApi_ReleaseTradeApi(XFinApi::TradeApi::ITrade *ptr);
+
+#else
+
+XFinApi::TradeApi::ITrade* XFinApi_CreateTradeApi(const char *path, int *errCode);
+void XFinApi_ReleaseTradeApi(XFinApi::TradeApi::ITrade *ptr);
+
+#endif

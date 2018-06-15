@@ -31,9 +31,15 @@
 # endif
 #endif
 
-#define INT32_DEFAULT	(std::numeric_limits<int32_t>::min)()
-#define INT64_DEFAULT	(std::numeric_limits<int64_t>::min)()
-#define DOUBLE_DEFAULT	std::numeric_limits<double>::quiet_NaN()
+#if defined(SWIG)
+# define INT32_DEFAULT  0
+# define INT64_DEFAULT  0
+# define DOUBLE_DEFAULT 0
+#else
+# define INT32_DEFAULT	(std::numeric_limits<int32_t>::min)()
+# define INT64_DEFAULT	(std::numeric_limits<int64_t>::min)()
+# define DOUBLE_DEFAULT	std::numeric_limits<double>::quiet_NaN()
+#endif
 
 #if defined(RCDEV)
 #define DEV_LOG(_fmt, ...) printf("[DevLog - %s] " _fmt "\n", __FUNCTION__, __VA_ARGS__)

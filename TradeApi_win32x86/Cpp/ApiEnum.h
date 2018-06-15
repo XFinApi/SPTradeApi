@@ -22,7 +22,7 @@ namespace XFinApi
 			// 创建实例失败
 			ErrCreateFailed = 5,
 			// 无授权文件
-			ErrLicense = 6,
+			ErrLicenseNotExist = 6,
 			// 授权版本不符
 			ErrVersion = 7,
 			// 最后一次通信超限
