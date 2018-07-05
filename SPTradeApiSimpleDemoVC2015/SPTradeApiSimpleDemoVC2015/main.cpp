@@ -75,7 +75,7 @@ public:
 		//注册SP仿真交易账号，http://demo.spsystem.info:8000/DemoAcc/DemoAcc_API.php?lang=2
 
 		HostAddress = "demo.spsystem.info:8080";
-		UserName = "DEMO201806119A";//公用测试账户。为了测试准确，请注册使用您自己的账户。
+		UserName = "DEMO201806119A";//公用测试账户,其他人也在使用时会登录失败，报错：-11150005,已登入。为了测试准确，请注册使用您自己的账户。
 		Password = "a123456";
 
 		AppID = "SPDEMO";
@@ -110,8 +110,8 @@ static void PrintNotifyInfo(const XFinApi::TradeApi::NotifyParams &param)
 			";LowerMessage=" + info.LowerMessage + ")";
 	}
 	printf(" OnNotify: Action=%d, Result=%d%s\n",
-		param.Action,
-		param.Result,
+		param.ActionType,
+		param.ResultType,
 		strs.c_str());
 }
 
@@ -144,7 +144,7 @@ static void PrintTickInfo(const XFinApi::TradeApi::Tick &tick)
 
 static void  PrintOrderInfo(const XFinApi::TradeApi::Order &order)
 {
-	printf("  ProductType=%d, ID=%s, InstID=%s, Price=%g, Volume=%ld, NoTradedVolume=%ld, Direction=%d, OpenCloseType=%d, PriceCond=%d, TimeCond=%d, VolumeCond=%d, Status=%d, Msg=%s, %s\n",
+	printf("  ProductType=%d, ID=%s, InstID=%s, Price=%g, Volume=%lld, NoTradedVolume=%lld, Direction=%d, OpenCloseType=%d, PriceCond=%d, TimeCond=%d, VolumeCond=%d, Status=%d, Msg=%s, %s\n",
 		order.ProductType,
 		order.OrderID.c_str(),
 		order.InstrumentID.c_str(), order.Price, order.Volume, order.NoTradedVolume,
@@ -160,7 +160,7 @@ static void  PrintOrderInfo(const XFinApi::TradeApi::Order &order)
 
 static void  PrintTradeInfo(const XFinApi::TradeApi::TradeOrder &trade)
 {
-	printf("  ID=%s, OrderID=%s, InstID=%s, Price=%g, Volume=%ld, Direction=%d, OpenCloseType=%d, %s\n",
+	printf("  ID=%s, OrderID=%s, InstID=%s, Price=%g, Volume=%lld, Direction=%d, OpenCloseType=%d, %s\n",
 		trade.TradeID.c_str(), trade.OrderID.c_str(),
 		trade.InstrumentID.c_str(), trade.Price, trade.Volume,
 		trade.Direction, trade.OpenCloseType,
@@ -176,7 +176,7 @@ static void  PrintInstrumentInfo(const XFinApi::TradeApi::Instrument &inst)
 
 static void  PrintPositionInfo(const XFinApi::TradeApi::Position &pos)
 {
-	printf("  InstID=%s, PositionYesDirection=%d, PosYesterday=%ld, BuyPosition=%ld, SellPosition=%ld, NetPosition=%ld\n",
+	printf("  InstID=%s, PositionYesDirection=%d, PosYesterday=%lld, BuyPosition=%lld, SellPosition=%lld, NetPosition=%lld\n",
 		pos.InstrumentID.c_str(), pos.PositionYesDirection, DEFAULT_FILTER(pos.PositionYesterday),
 		DEFAULT_FILTER(pos.BuyPosition), DEFAULT_FILTER(pos.SellPosition),
 		DEFAULT_FILTER(pos.NetPosition));
@@ -236,8 +236,8 @@ public:
 		PrintNotifyInfo(notifyParams);
 
 		//连接成功后可订阅合约
-		if ((int)XFinApi::TradeApi::Action::Open == notifyParams.Action &&
-			(int)XFinApi::TradeApi::Result::Success == notifyParams.Result && market)
+		if ((int)XFinApi::TradeApi::ActionKind::Open == notifyParams.ActionType &&
+			(int)XFinApi::TradeApi::ResultKind::Success == notifyParams.ResultType && market)
 		{
 			//订阅
 			XFinApi::TradeApi::QueryParams param;
@@ -408,8 +408,8 @@ void MarketTest()
 	连接成功后才能执行订阅行情等操作，检测方法有两种：
 	1、IMarket::IsOpened()=true
 	2、MarketListener::OnNotify中
-	(int)XFinApi::TradeApi::Action::Open == notifyParams.Action &&
-	(int)XFinApi::TradeApi::Result::Success == notifyParams.Result
+	(int)XFinApi::TradeApi::ActionKind::Open == notifyParams.ActionType &&
+	(int)XFinApi::TradeApi::ResultKind::Success == notifyParams.ResultType
 	*/
 
 	/* 行情相关方法
@@ -461,8 +461,8 @@ void TradeTest()
 	//连接成功后才能执行查询、委托等操作，检测方法有两种：
 	1、ITrade::IsOpened()=true
 	2、TradeListener::OnNotify中
-	(int)XFinApi::TradeApi::Action::Open == notifyParams.Action &&
-	(int)XFinApi::TradeApi::Result::Success == notifyParams.Result
+	(int)XFinApi::TradeApi::ActionKind::Open == notifyParams.ActionType &&
+	(int)XFinApi::TradeApi::ResultKind::Success == notifyParams.ResultType
 	*/
 	while (!trade->IsOpened())
 		std::this_thread::sleep_for(std::chrono::seconds(1));
@@ -510,15 +510,15 @@ void TradeTest()
 	order.Price = Cfg.SellPrice1;
 	order.PricePrecision = 3;
 	order.Volume = 1;
-	order.Direction = XFinApi::TradeApi::TradeDirection::Buy;
+	order.Direction = XFinApi::TradeApi::DirectionKind::Buy;
 	order.OpenCloseType = XFinApi::TradeApi::OpenCloseKind::Open;
 
 	//下单高级选项，可选择性设置
 	order.ActionType = XFinApi::TradeApi::OrderActionKind::Insert;//下单
 	order.OrderType = XFinApi::TradeApi::OrderKind::Order;//标准单
-	order.PriceCond = XFinApi::TradeApi::PriceCondition::LimitPrice;//限价
-	order.VolumeCond = XFinApi::TradeApi::VolumeCondition::AnyVolume;//任意数量
-	order.TimeCond = XFinApi::TradeApi::TimeCondition::GFD;//当日有效
+	order.PriceCond = XFinApi::TradeApi::PriceConditionKind::LimitPrice;//限价
+	order.VolumeCond = XFinApi::TradeApi::VolumeConditionKind::AnyVolume;//任意数量
+	order.TimeCond = XFinApi::TradeApi::TimeConditionKind::GFD;//当日有效
 	order.ContingentCond = XFinApi::TradeApi::ContingentCondKind::Immediately;//立即
 	order.HedgeType = XFinApi::TradeApi::HedgeKind::Speculation;//投机
 	order.ExecResult = XFinApi::TradeApi::ExecResultKind::NoExec;//没有执行
