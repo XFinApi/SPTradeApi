@@ -6,6 +6,9 @@ import XFinApi_TradeApi
 import time
 
 
+# Python版本说明：Api使用32位python-3.6版本编译，建议开发时也使用该版本。#
+
+
 # 配置信息
 class Config:
     # 注册SP仿真交易账号，http: // demo.spsystem.info: 8000 / DemoAcc / DemoAcc_API.php?lang = 2
@@ -26,7 +29,7 @@ class Config:
     BidPrice1 = -1;
 
 
-# API创建失败错误码的含义，其他错误码的含义参见TradeApi_win32x86\Cpp\ApiEnum.h文件
+# API创建失败错误码的含义，其他错误码的含义参见XTA_W32\Cpp\ApiEnum.h文件
 StrCreateErrors = [
     "无错误",
     "头文件与接口版本不匹配",
@@ -108,7 +111,7 @@ class MarketTest:
             XFinApi_TradeApi.XFinApi_ReleaseMarketApi(self.market)
 
     def test(self):
-        self.market = XFinApi_TradeApi.XFinApi_CreateMarketApi("TradeApi_win32x86/Api/SPTradeApi_R8.75.4/XFinApi.SPTradeApi.dll")
+        self.market = XFinApi_TradeApi.XFinApi_CreateMarketApi("XTA_W32/Api/SPApi_R8.75.4/XFinApi.SPTradeApi.dll")
         if isinstance(self.market,int):
             print("* Market XFinApiCreateError={};".format(StrCreateErrors[self.market]))
             return
@@ -227,7 +230,7 @@ class TradeTest:
     def Test(self):
         # 创建ITrade char * path指xxx.exe同级子目录中的xxx.dll文件
         self.trade = XFinApi_TradeApi.XFinApi_CreateTradeApi(
-            "TradeApi_win32x86/Api/SPTradeApi_R8.75.4/XFinApi.SPTradeApi.dll")
+            "XTA_W32/Api/SPApi_R8.75.4/XFinApi.SPTradeApi.dll")
         if isinstance(self.trade,int):
             print("* Trade XFinApiCreateError={};".format(StrCreateErrors[self.trade]))
             return

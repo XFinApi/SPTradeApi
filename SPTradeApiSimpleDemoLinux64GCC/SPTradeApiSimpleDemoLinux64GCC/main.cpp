@@ -168,7 +168,7 @@ static bool TimeIsSmaller(const std::string &lhs, const std::string &rhs)
 }
 
 //////////////////////////////////////////////////////////////////////////////////
-//API 创建失败错误码的含义，其他错误码的含义参见TradeApi_win32x86\Cpp\ApiEnum.h文件
+//API 创建失败错误码的含义，其他错误码的含义参见XTA_W32\Cpp\ApiEnum.h文件
 static const char *StrCreateErrors[] = {
 	"无错误",
 	"头文件与接口版本不匹配",
@@ -342,7 +342,7 @@ void MarketTest()
 	//const char* path 指 xxx.exe 同级子目录中的 xxx.so 文件
 	int err = -1;
 
-	market = XFinApi_CreateMarketApi("TradeApi_linux64/Api/SPTradeApi_R8.75.4/XFinApi.SPTradeApi.so", &err);
+	market = XFinApi_CreateMarketApi("XTA_L64/Api/SPApi_R8.75.4/XFinApi.SPTradeApi.so", &err);
 
 	if (err || !market)
 	{
@@ -394,7 +394,7 @@ void TradeTest()
 	//const char* path 指 xxx.exe 同级子目录中的 xxx.so 文件
 	int err = -1;
 
-	trade = XFinApi_CreateTradeApi("TradeApi_linux64/Api/SPTradeApi_R8.75.4/XFinApi.SPTradeApi.so", &err);
+	trade = XFinApi_CreateTradeApi("XTA_L64/Api/SPApi_R8.75.4/XFinApi.SPTradeApi.so", &err);
 
 	if (err && !trade)
 	{

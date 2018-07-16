@@ -8,11 +8,11 @@ VC++2015工程配置
 
 1、包含目录
 选择工程-属性-VC++目录-包含目录
-添加：$(Solutiondir)..\TradeApi_win32x86\Cpp
+添加：$(Solutiondir)..\XTA_W32\Cpp
 
 2、lib库目录
 选择工程-属性-VC++目录-库目录
-添加：$(Solutiondir)..\TradeApi_win32x86\Cpp
+添加：$(Solutiondir)..\XTA_W32\Cpp
 
 3、lib依赖项
 选择工程-属性-链接器-输入-附加依赖项
@@ -37,7 +37,7 @@ debug使用：XFinApi.ITradeApid.lib
 
 1.拷贝XFinApi.ITradeApi.dll到可执行文件目录
 
-2.拷贝TradeApi_win32x86\Api\SPTradeApi_RX.XX.X目录（X.XX.X为版本号）下的所有dll文件到可执行文件目录，
+2.拷贝XTA_W32\Api\SPApi_RX.XX.X目录（X.XX.X为版本号）下的所有dll文件到可执行文件目录，
 建议保留dll文件所处目录结构，解决接口dll文件可能重名的问题。
 */
 
@@ -206,7 +206,7 @@ static bool TimeIsSmaller(const std::string &lhs, const std::string &rhs)
 }
 
 //////////////////////////////////////////////////////////////////////////////////
-//API 创建失败错误码的含义，其他错误码的含义参见TradeApi_win32x86\Cpp\ApiEnum.h文件
+//API 创建失败错误码的含义，其他错误码的含义参见XTA_W32\Cpp\ApiEnum.h文件
 static const char *StrCreateErrors[] = {
 	"无错误",
 	"头文件与接口版本不匹配",
@@ -380,9 +380,9 @@ void MarketTest()
 	//const char* path 指 xxx.exe 同级子目录中的 xxx.dll 文件
 	int err = -1;
 #ifdef _DEBUG
-	market = XFinApi_CreateMarketApi("TradeApi_win32x86/Api/SPTradeApi_R8.75.4/XFinApi.SPTradeApid.dll", &err);
+	market = XFinApi_CreateMarketApi("XTA_W32/Api/SPApi_R8.75.4/XFinApi.SPTradeApid.dll", &err);
 #else
-	market = XFinApi_CreateMarketApi("TradeApi_win32x86/Api/SPTradeApi_R8.75.4/XFinApi.SPTradeApi.dll", &err);
+	market = XFinApi_CreateMarketApi("XTA_W32/Api/SPApi_R8.75.4/XFinApi.SPTradeApi.dll", &err);
 #endif
 
 	if (err || !market)
@@ -434,9 +434,9 @@ void TradeTest()
 	//const char* path 指 xxx.exe 同级子目录中的 xxx.dll 文件
 	int err = -1;
 #ifdef _DEBUG
-	trade = XFinApi_CreateTradeApi("TradeApi_win32x86/Api/SPTradeApi_R8.75.4/XFinApi.SPTradeApid.dll", &err);
+	trade = XFinApi_CreateTradeApi("XTA_W32/Api/SPApi_R8.75.4/XFinApi.SPTradeApid.dll", &err);
 #else
-	trade = XFinApi_CreateTradeApi("TradeApi_win32x86/Api/SPTradeApi_R8.75.4/XFinApi.SPTradeApi.dll", &err);
+	trade = XFinApi_CreateTradeApi("XTA_W32/Api/SPApi_R8.75.4/XFinApi.SPTradeApi.dll", &err);
 #endif
 	if (err && !trade)
 	{

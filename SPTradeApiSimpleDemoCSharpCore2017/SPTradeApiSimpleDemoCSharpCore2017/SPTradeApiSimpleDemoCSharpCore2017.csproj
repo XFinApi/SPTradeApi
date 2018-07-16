@@ -7,12 +7,12 @@
   </PropertyGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="xcopy $(SolutionDir)..\TradeApi_win32x86\Api\SPTradeApi_R8.75.4 $(OutDir)TradeApi_win32x86\Api\SPTradeApi_R8.75.4 /I /E /Y&#xD;&#xA;xcopy $(SolutionDir)..\TradeApi_win32x86\CSharpCore\XFinApi.ITradeApi.PortCS.dll $(OutDir) /Y" />
+    <Exec Command="xcopy $(SolutionDir)..\XTA_W32\Api\SPApi_R8.75.4 $(OutDir)XTA_W32\Api\SPApi_R8.75.4 /I /E /Y&#xD;&#xA;xcopy $(SolutionDir)..\XTA_W32\CSharpCore\XFinApi.ITradeApi.PortCS.dll $(OutDir) /Y" />
   </Target>
 
   <ItemGroup>
     <Reference Include="XFinApi.ITradeApi.DriverCS">
-      <HintPath>..\..\TradeApi_win32x86\CSharpCore\XFinApi.ITradeApi.DriverCS.dll</HintPath>
+      <HintPath>..\..\XTA_W32\CSharpCore\XFinApi.ITradeApi.DriverCS.dll</HintPath>
     </Reference>
   </ItemGroup>
 
