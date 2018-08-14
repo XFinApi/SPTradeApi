@@ -162,8 +162,8 @@ class TradeEvent(XFinApi_TradeApi.TradeListener):
     def OnUpdateTradeOrder(self,trade):
         print("- OnUpdateTradeOrder:")
         print(" ID={}, OrderID={}, InstID={}, Price={}, Volume={}, Direction={}, OpenCloseType={}, {}".format(
-            trade.TradeID, trade.OrderID,trade.InstrumentID(), trade.getPrice, trade.getVolume,
-            trade.Direction, trade.getOpenCloseType,trade.TradeTime))
+            trade.TradeID, trade.OrderID,trade.InstrumentID, trade.Price, trade.Volume,
+            trade.Direction, trade.OpenCloseType,trade.TradeTime))
 
     def OnQueryOrder(self,orders):
         print("- OnQueryOrder:")
@@ -250,8 +250,8 @@ class TradeTest:
         self.trade.Open(openParams)
 
         # 连接成功后才能执行查询、委托等操作，检测方法有两种：
-        # 1、ITrade.IsOpened() = true
-        # 2、TradeListener.OnNotify中
+        # 1、self.trade.IsOpened() == 1
+        # 2、TradeEvent的OnNotify中
         # XFinApi_TradeApi.ActionKind_Open == notifyParams.ActionType and XFinApi_TradeApi.ResultKind_Success == notifyParams.ResultType
         while self.trade.IsOpened() != 1:
             time.sleep(1)
@@ -296,7 +296,7 @@ class TradeTest:
         input()
         order = XFinApi_TradeApi.Order()
         order.InstrumentID = self.cfg.InstrumentID
-        order.Price = self.cfg.BidPrice1
+        order.Price = self.cfg.AskPrice1
         order.PricePrecision = 3;
         order.Volume = 1
         order.Direction = XFinApi_TradeApi.DirectionKind_Buy

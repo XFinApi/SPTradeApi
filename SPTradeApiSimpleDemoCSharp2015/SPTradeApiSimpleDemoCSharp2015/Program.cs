@@ -143,7 +143,7 @@ namespace SPTradeApiSimpleDemoCSharp2015
 
         static void PrintAccountInfo(Account acc)
         {
-            Console.WriteLine(string.Format("  Available={1:g}, NetAssetValue={2:g}, CommodityPL={3:g}, IMargin={4:g}, MMargin={5:g}, CreditLimit={6:g}, CashBal={1:g}\n",
+            Console.WriteLine(string.Format("  Available={0:g}, NetAssetValue={1:g}, CommodityPL={2:g}, IMargin={3:g}, MMargin={4:g}, CreditLimit={5:g}, CashBal={6:g}\n",
                 acc.Available, acc.NetAssetValue, acc.CommodityPL, acc.IMargin,
                 acc.MMargin, acc.CreditLimit, acc.CashBal));
         }

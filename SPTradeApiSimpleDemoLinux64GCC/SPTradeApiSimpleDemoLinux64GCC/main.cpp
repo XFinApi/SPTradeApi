@@ -1,4 +1,4 @@
-/*******************************************************
+ï»¿/*******************************************************
 * SPTradeApiSimpleDemoVC2015
 * www.xfinapi.com
 *******************************************************/
@@ -10,34 +10,34 @@
 #include "XFinApi.h"
 
 //////////////////////////////////////////////////////////////////////////////////
-//ÅäÖÃĞÅÏ¢
+//é…ç½®ä¿¡æ¯
 class Config
 {
 public:
-	//µØÖ·
+	//åœ°å€
 	std::string HostAddress;
 
-	//ÕË»§
+	//è´¦æˆ·
 	std::string UserName;
 	std::string Password;
 
 	std::string AppID;
 	std::string License;
 
-	//ºÏÔ¼
+	//åˆçº¦
 	std::string InstrumentID;
 	std::string ProductID;
 
-	//ĞĞÇé
+	//è¡Œæƒ…
 	double SellPrice1 = -1;
 	double BuyPrice1 = -1;
 
 	Config()
 	{
-		//×¢²áSP·ÂÕæ½»Ò×ÕËºÅ£¬http://demo.spsystem.info:8000/DemoAcc/DemoAcc_API.php?lang=2
+		//æ³¨å†ŒSPä»¿çœŸäº¤æ˜“è´¦å·ï¼Œhttp://demo.spsystem.info:8000/DemoAcc/DemoAcc_API.php?lang=2
 
 		HostAddress = "demo.spsystem.info:8080";
-		UserName = "DEMO201806119A";//¹«ÓÃ²âÊÔÕË»§,ÆäËûÈËÒ²ÔÚÊ¹ÓÃÊ±»áµÇÂ¼Ê§°Ü£¬±¨´í£º-11150005,ÒÑµÇÈë¡£ÎªÁË²âÊÔ×¼È·£¬Çë×¢²áÊ¹ÓÃÄú×Ô¼ºµÄÕË»§¡£
+		UserName = "DEMO201806119A";//å…¬ç”¨æµ‹è¯•è´¦æˆ·,å…¶ä»–äººä¹Ÿåœ¨ä½¿ç”¨æ—¶ä¼šç™»å½•å¤±è´¥ï¼ŒæŠ¥é”™ï¼š-11150005,å·²ç™»å…¥ã€‚ä¸ºäº†æµ‹è¯•å‡†ç¡®ï¼Œè¯·æ³¨å†Œä½¿ç”¨æ‚¨è‡ªå·±çš„è´¦æˆ·ã€‚
 		Password = "a123456";
 
 		AppID = "SPDEMO";
@@ -59,7 +59,7 @@ static MarketEvent *marketEvent = nullptr;
 static TradeEvent *tradeEvent = nullptr;
 
 //////////////////////////////////////////////////////////////////////////////////
-//¸¨Öú·½·¨
+//è¾…åŠ©æ–¹æ³•
 #define DEFAULT_FILTER(_x)  ( XFinApi::TradeApi::IsDefaultValue(_x) ? -1 : _x)
 
 static void PrintNotifyInfo(const XFinApi::TradeApi::NotifyParams &param)
@@ -168,24 +168,24 @@ static bool TimeIsSmaller(const std::string &lhs, const std::string &rhs)
 }
 
 //////////////////////////////////////////////////////////////////////////////////
-//API ´´½¨Ê§°Ü´íÎóÂëµÄº¬Òå£¬ÆäËû´íÎóÂëµÄº¬Òå²Î¼ûXTA_W32\Cpp\ApiEnum.hÎÄ¼ş
+//API åˆ›å»ºå¤±è´¥é”™è¯¯ç çš„å«ä¹‰ï¼Œå…¶ä»–é”™è¯¯ç çš„å«ä¹‰å‚è§XTA_W32\Cpp\ApiEnum.hæ–‡ä»¶
 static const char *StrCreateErrors[] = {
-	"ÎŞ´íÎó",
-	"Í·ÎÄ¼şÓë½Ó¿Ú°æ±¾²»Æ¥Åä",
-	"Í·ÎÄ¼şÓëÊµÏÖ°æ±¾²»Æ¥Åä",
-	"ÊµÏÖ¼ÓÔØÊ§°Ü",
-	"ÊµÏÖÈë¿ÚÎ´ÕÒµ½",
-	"´´½¨ÊµÀıÊ§°Ü",
-	"ÎŞÊÚÈ¨ÎÄ¼ş",
-	"ÊÚÈ¨°æ±¾²»·û",
-	"×îºóÒ»´ÎÍ¨ĞÅ³¬ÏŞ",
-	"»úÆ÷Âë´íÎó",
-	"ÈÏÖ¤ÎÄ¼şµ½ÆÚ",
-	"ÈÏÖ¤³¬Ê±"
+	"æ— é”™è¯¯",
+	"å¤´æ–‡ä»¶ä¸æ¥å£ç‰ˆæœ¬ä¸åŒ¹é…",
+	"å¤´æ–‡ä»¶ä¸å®ç°ç‰ˆæœ¬ä¸åŒ¹é…",
+	"å®ç°åŠ è½½å¤±è´¥",
+	"å®ç°å…¥å£æœªæ‰¾åˆ°",
+	"åˆ›å»ºå®ä¾‹å¤±è´¥",
+	"æ— æˆæƒæ–‡ä»¶",
+	"æˆæƒç‰ˆæœ¬ä¸ç¬¦",
+	"æœ€åä¸€æ¬¡é€šä¿¡è¶…é™",
+	"æœºå™¨ç é”™è¯¯",
+	"è®¤è¯æ–‡ä»¶åˆ°æœŸ",
+	"è®¤è¯è¶…æ—¶"
 };
 
 //////////////////////////////////////////////////////////////////////////////////
-//ĞĞÇéÊÂ¼ş
+//è¡Œæƒ…äº‹ä»¶
 class MarketEvent : public XFinApi::TradeApi::MarketListener
 {
 public:
@@ -197,11 +197,11 @@ public:
 		printf("* Market");
 		PrintNotifyInfo(notifyParams);
 
-		//Á¬½Ó³É¹¦ºó¿É¶©ÔÄºÏÔ¼
+		//è¿æ¥æˆåŠŸåå¯è®¢é˜…åˆçº¦
 		if ((int)XFinApi::TradeApi::ActionKind::Open == notifyParams.ActionType &&
 			(int)XFinApi::TradeApi::ResultKind::Success == notifyParams.ResultType && market)
 		{
-			//¶©ÔÄ
+			//è®¢é˜…
 			XFinApi::TradeApi::QueryParams param;
 			param.InstrumentID = Cfg.InstrumentID;
 			market->Subscribe(param);
@@ -237,7 +237,7 @@ public:
 };
 
 //////////////////////////////////////////////////////////////////////////////////
-//½»Ò×ÊÂ¼ş
+//äº¤æ˜“äº‹ä»¶
 class TradeEvent : public XFinApi::TradeApi::TradeListener
 {
 public:
@@ -335,11 +335,11 @@ public:
 };
 
 //////////////////////////////////////////////////////////////////////////////////
-//ĞĞÇé²âÊÔ
+//è¡Œæƒ…æµ‹è¯•
 void MarketTest()
 {
-	//´´½¨ IMarket
-	//const char* path Ö¸ xxx.exe Í¬¼¶×ÓÄ¿Â¼ÖĞµÄ xxx.so ÎÄ¼ş
+	//åˆ›å»º IMarket
+	//const char* path æŒ‡ xxx.exe åŒçº§å­ç›®å½•ä¸­çš„ xxx.so æ–‡ä»¶
 	int err = -1;
 
 	market = XFinApi_CreateMarketApi("XTA_L64/Api/SPApi_R8.75.4/XFinApi.SPTradeApi.so", &err);
@@ -350,11 +350,11 @@ void MarketTest()
 		return;
 	}
 
-	//×¢²áÊÂ¼ş
+	//æ³¨å†Œäº‹ä»¶
 	marketEvent = new MarketEvent();
 	market->SetListener(marketEvent);
 
-	//Á¬½Ó·şÎñÆ÷
+	//è¿æ¥æœåŠ¡å™¨
 	XFinApi::TradeApi::OpenParams openParams;
 	openParams.HostAddress = Cfg.HostAddress;
 	openParams.UserID = Cfg.UserName;
@@ -365,33 +365,33 @@ void MarketTest()
 	market->Open(openParams);
 
 	/*
-	Á¬½Ó³É¹¦ºó²ÅÄÜÖ´ĞĞ¶©ÔÄĞĞÇéµÈ²Ù×÷£¬¼ì²â·½·¨ÓĞÁ½ÖÖ£º
-	1¡¢IMarket::IsOpened()=true
-	2¡¢MarketListener::OnNotifyÖĞ
+	è¿æ¥æˆåŠŸåæ‰èƒ½æ‰§è¡Œè®¢é˜…è¡Œæƒ…ç­‰æ“ä½œï¼Œæ£€æµ‹æ–¹æ³•æœ‰ä¸¤ç§ï¼š
+	1ã€IMarket::IsOpened()=true
+	2ã€MarketListener::OnNotifyä¸­
 	(int)XFinApi::TradeApi::ActionKind::Open == notifyParams.ActionType &&
 	(int)XFinApi::TradeApi::ResultKind::Success == notifyParams.ResultType
 	*/
 
-	/* ĞĞÇéÏà¹Ø·½·¨
+	/* è¡Œæƒ…ç›¸å…³æ–¹æ³•
 	while (!market->IsOpened())
 		std::this_thread::sleep_for(std::chrono::seconds(1));
 
-	//¶©ÔÄĞĞÇé£¬ÒÑÔÚMarketEvent::OnNotifyÖĞ¶©ÔÄ
+	//è®¢é˜…è¡Œæƒ…ï¼Œå·²åœ¨MarketEvent::OnNotifyä¸­è®¢é˜…
 	XFinApi::TradeApi::QueryParams param;
 	param.InstrumentID = Cfg.InstrumentID;
 	market->Subscribe(param);
 
-	//È¡Ïû¶©ÔÄĞĞÇé
+	//å–æ¶ˆè®¢é˜…è¡Œæƒ…
 	market->Unsubscribe(param);
 	*/
 }
 
 //////////////////////////////////////////////////////////////////////////////////
-//½»Ò×²âÊÔ
+//äº¤æ˜“æµ‹è¯•
 void TradeTest()
 {
-	//´´½¨ ITrade
-	//const char* path Ö¸ xxx.exe Í¬¼¶×ÓÄ¿Â¼ÖĞµÄ xxx.so ÎÄ¼ş
+	//åˆ›å»º ITrade
+	//const char* path æŒ‡ xxx.exe åŒçº§å­ç›®å½•ä¸­çš„ xxx.so æ–‡ä»¶
 	int err = -1;
 
 	trade = XFinApi_CreateTradeApi("XTA_L64/Api/SPApi_R8.75.4/XFinApi.SPTradeApi.so", &err);
@@ -402,11 +402,11 @@ void TradeTest()
 		return;
 	}
 
-	//×¢²áÊÂ¼ş
+	//æ³¨å†Œäº‹ä»¶
 	tradeEvent = new TradeEvent;
 	trade->SetListener(tradeEvent);
 
-	//Á¬½Ó·şÎñÆ÷
+	//è¿æ¥æœåŠ¡å™¨
 	XFinApi::TradeApi::OpenParams openParams;
 	openParams.HostAddress = Cfg.HostAddress;
 	openParams.UserID = Cfg.UserName;
@@ -417,9 +417,9 @@ void TradeTest()
 	trade->Open(openParams);
 
 	/*
-	//Á¬½Ó³É¹¦ºó²ÅÄÜÖ´ĞĞ²éÑ¯¡¢Î¯ÍĞµÈ²Ù×÷£¬¼ì²â·½·¨ÓĞÁ½ÖÖ£º
-	1¡¢ITrade::IsOpened()=true
-	2¡¢TradeListener::OnNotifyÖĞ
+	//è¿æ¥æˆåŠŸåæ‰èƒ½æ‰§è¡ŒæŸ¥è¯¢ã€å§”æ‰˜ç­‰æ“ä½œï¼Œæ£€æµ‹æ–¹æ³•æœ‰ä¸¤ç§ï¼š
+	1ã€ITrade::IsOpened()=true
+	2ã€TradeListener::OnNotifyä¸­
 	(int)XFinApi::TradeApi::ActionKind::Open == notifyParams.ActionType &&
 	(int)XFinApi::TradeApi::ResultKind::Success == notifyParams.ResultType
 	*/
@@ -429,38 +429,38 @@ void TradeTest()
 	XFinApi::TradeApi::QueryParams qryParam;
 	qryParam.InstrumentID = Cfg.InstrumentID;
 
-	//²éÑ¯Î¯ÍĞµ¥
-	std::this_thread::sleep_for(std::chrono::seconds(1));//ÓĞĞ©½Ó¿Ú²éÑ¯ÓĞ¼ä¸ôÏŞÖÆ
+	//æŸ¥è¯¢å§”æ‰˜å•
+	std::this_thread::sleep_for(std::chrono::seconds(1));//æœ‰äº›æ¥å£æŸ¥è¯¢æœ‰é—´éš”é™åˆ¶
 	std::cout << "Press any key to QueryOrder.\n";
 	getchar();
 	trade->QueryOrder(qryParam);
 
-	//²éÑ¯³É½»µ¥
+	//æŸ¥è¯¢æˆäº¤å•
 	std::this_thread::sleep_for(std::chrono::seconds(1));
 	std::cout << "Press any key to QueryTradeOrder.\n";
 	getchar();
 	trade->QueryTradeOrder(qryParam);
 
-	//²éÑ¯ºÏÔ¼
+	//æŸ¥è¯¢åˆçº¦
 	std::this_thread::sleep_for(std::chrono::seconds(1));
 	qryParam.ProductID = Cfg.ProductID;
 	std::cout << "Press any key to QueryInstrument.\n";
 	getchar();
 	trade->QueryInstrument(qryParam);
 
-	//²éÑ¯³Ö²Ö
+	//æŸ¥è¯¢æŒä»“
 	std::this_thread::sleep_for(std::chrono::seconds(1));
 	std::cout << "Press any key to QueryPosition.\n";
 	getchar();
 	trade->QueryPosition(qryParam);
 
-	//²éÑ¯ÕË»§
+	//æŸ¥è¯¢è´¦æˆ·
 	std::this_thread::sleep_for(std::chrono::seconds(1));
 	std::cout << "Press any key to QueryAccount.\n";
 	getchar();
 	trade->QueryAccount(qryParam);
 
-	//Î¯ÍĞÏÂµ¥
+	//å§”æ‰˜ä¸‹å•
 	std::this_thread::sleep_for(std::chrono::seconds(1));
 	std::cout << "Press any key to OrderAction.\n";
 	getchar();
@@ -472,22 +472,26 @@ void TradeTest()
 	order.Direction = XFinApi::TradeApi::DirectionKind::Buy;
 	order.OpenCloseType = XFinApi::TradeApi::OpenCloseKind::Open;
 
-	//ÏÂµ¥¸ß¼¶Ñ¡Ïî£¬¿ÉÑ¡ÔñĞÔÉèÖÃ
-	order.ActionType = XFinApi::TradeApi::OrderActionKind::Insert;//ÏÂµ¥
-	order.OrderType = XFinApi::TradeApi::OrderKind::Order;//±ê×¼µ¥
-	order.PriceCond = XFinApi::TradeApi::PriceConditionKind::LimitPrice;//ÏŞ¼Û
-	order.VolumeCond = XFinApi::TradeApi::VolumeConditionKind::AnyVolume;//ÈÎÒâÊıÁ¿
-	order.TimeCond = XFinApi::TradeApi::TimeConditionKind::GFD;//µ±ÈÕÓĞĞ§
-	order.ContingentCond = XFinApi::TradeApi::ContingentCondKind::Immediately;//Á¢¼´
-	order.HedgeType = XFinApi::TradeApi::HedgeKind::Speculation;//Í¶»ú
-	order.ExecResult = XFinApi::TradeApi::ExecResultKind::NoExec;//Ã»ÓĞÖ´ĞĞ
+	//ä¸‹å•é«˜çº§é€‰é¡¹ï¼Œå¯é€‰æ‹©æ€§è®¾ç½®
+	order.ActionType = XFinApi::TradeApi::OrderActionKind::Insert;//ä¸‹å•
+	order.OrderType = XFinApi::TradeApi::OrderKind::Order;//æ ‡å‡†å•
+	order.PriceCond = XFinApi::TradeApi::PriceConditionKind::LimitPrice;//é™ä»·
+	order.VolumeCond = XFinApi::TradeApi::VolumeConditionKind::AnyVolume;//ä»»æ„æ•°é‡
+	order.TimeCond = XFinApi::TradeApi::TimeConditionKind::GFD;//å½“æ—¥æœ‰æ•ˆ
+	order.ContingentCond = XFinApi::TradeApi::ContingentCondKind::Immediately;//ç«‹å³
+	order.HedgeType = XFinApi::TradeApi::HedgeKind::Speculation;//æŠ•æœº
+	order.ExecResult = XFinApi::TradeApi::ExecResultKind::NoExec;//æ²¡æœ‰æ‰§è¡Œ
 
 	trade->OrderAction(order);
 }
 
 int main()
 {
-	//¿ÉÔÚConfigÀàÖĞĞŞ¸ÄÓÃ»§Ãû¡¢ÃÜÂë¡¢ºÏÔ¼µÈĞÅÏ¢
+	#if defined(__unix__)
+	system("sudo echo");
+	#endif
+	
+	//å¯åœ¨Configç±»ä¸­ä¿®æ”¹ç”¨æˆ·åã€å¯†ç ã€åˆçº¦ç­‰ä¿¡æ¯
 
 	MarketTest();
 	TradeTest();
@@ -496,18 +500,18 @@ int main()
 	std::cout << "Press any key to close.\n";
 	getchar();
 
-	//¹Ø±ÕÁ¬½Ó
+	//å…³é—­è¿æ¥
 	if (market)
 	{
 		market->Close();
-		XFinApi_ReleaseMarketApi(market);//±ØĞëÊÍ·Å×ÊÔ´
+		XFinApi_ReleaseMarketApi(market);//å¿…é¡»é‡Šæ”¾èµ„æº
 	}
 	if (trade)
 	{
 		trade->Close();
-		XFinApi_ReleaseTradeApi(trade);//±ØĞëÊÍ·Å×ÊÔ´
+		XFinApi_ReleaseTradeApi(trade);//å¿…é¡»é‡Šæ”¾èµ„æº
 	}
-	//ÇåÀíÊÂ¼ş
+	//æ¸…ç†äº‹ä»¶
 	if (marketEvent)
 	{
 		delete marketEvent;

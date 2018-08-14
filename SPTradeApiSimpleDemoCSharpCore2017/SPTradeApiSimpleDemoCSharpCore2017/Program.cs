@@ -134,7 +134,7 @@ namespace SPTradeApiSimpleDemoCSharpCore2017
         {
             long buyposition = ITradeApi.IsDefaultValue(pos.BuyPosition) ? -1 : pos.BuyPosition;
             long sellposition = ITradeApi.IsDefaultValue(pos.SellPosition) ? -1 : pos.SellPosition;
-            long positionNet = ITradeApi.IsDefaultValue(pos.NetPosition) ? -1 : pos.NetPosition;
+			long positionNet = ITradeApi.IsDefaultValue(pos.NetPosition) ? -1 : pos.NetPosition;
             long positionYesterday = ITradeApi.IsDefaultValue(pos.PositionYesterday) ? -1 : pos.PositionYesterday;
             Console.WriteLine(string.Format(" InstID={0}, PositionYesDirection={1:d}, PositionYesterday={2:d}, BuyPosition={3:d}, SellPosition={4:d}, NetPosition={5:d}",
                 pos.InstrumentID, pos.PositionYesDirection, positionYesterday,
@@ -143,7 +143,7 @@ namespace SPTradeApiSimpleDemoCSharpCore2017
 
         static void PrintAccountInfo(Account acc)
         {
-            Console.WriteLine(string.Format("  Available={1:g}, NetAssetValue={2:g}, CommodityPL={3:g}, IMargin={4:g}, MMargin={5:g}, CreditLimit={6:g}, CashBal={1:g}\n",
+            Console.WriteLine(string.Format("  Available={0:g}, NetAssetValue={1:g}, CommodityPL={2:g}, IMargin={3:g}, MMargin={4:g}, CreditLimit={5:g}, CashBal={6:g}\n",
                 acc.Available, acc.NetAssetValue, acc.CommodityPL, acc.IMargin,
                 acc.MMargin, acc.CreditLimit, acc.CashBal));
         }
