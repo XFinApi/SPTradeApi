@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPTradeApiSimpleDemoCSharp2015", "SPTradeApiSimpleDemoCSharp2015\SPTradeApiSimpleDemoCSharp2015.csproj", "{394E9B1D-1772-4C06-A549-3DF04EC50871}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPTradeApiSimpleDemoCSharp2015", "SPTradeApiSimpleDemoCSharp2015.csproj", "{394E9B1D-1772-4C06-A549-3DF04EC50871}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

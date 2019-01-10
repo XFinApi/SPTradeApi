@@ -113,9 +113,9 @@ public class Main {
     }
 
     static void PrintAccountInfo(XFinApi.TradeApi.Account acc) {
-        System.out.println(String.format("  Available=%g, NetAssetValue=%g, CommodityPL=%g, IMargin=%g, MMargin=%g, CreditLimit=%g, CashBal=%g",
-                acc.getAvailable(), acc.getNetAssetValue(), acc.getCommodityPL(), acc.getIMargin(),
-                acc.getMMargin(), acc.getCreditLimit(), acc.getCashBal()));
+        System.out.println(String.format("  Available=%g, StaticBalance=%g, CloseProfit=%g, CurrMargin=%g, MaintenanceMargin=%g, CreditLimit=%g, Balance=%g",
+                acc.getAvailable(), acc.getStaticBalance(), acc.getCloseProfit(), acc.getCurrMargin(),
+                acc.getMaintenanceMargin(), acc.getCreditLimit(), acc.getBalance()));
     }
 
     //////////////////////////////////////////////////////////////////////////////////

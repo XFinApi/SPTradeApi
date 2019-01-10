@@ -1,12 +1,12 @@
 ﻿/*******************************************************
-* SPTradeApiSimpleDemoCSharpCore2017
+* SPTradeApiSimpleDemoCSharp2015
 * www.xfinapi.com
 *******************************************************/
 using System;
 using System.Threading;
 using XFinApi.TradeApi;
 
-namespace SPTradeApiSimpleDemoCSharpCore2017
+namespace SPTradeApiSimpleDemoCSharp2015
 {
     class Program
     {
@@ -134,7 +134,7 @@ namespace SPTradeApiSimpleDemoCSharpCore2017
         {
             long buyposition = ITradeApi.IsDefaultValue(pos.BuyPosition) ? -1 : pos.BuyPosition;
             long sellposition = ITradeApi.IsDefaultValue(pos.SellPosition) ? -1 : pos.SellPosition;
-			long positionNet = ITradeApi.IsDefaultValue(pos.NetPosition) ? -1 : pos.NetPosition;
+            long positionNet = ITradeApi.IsDefaultValue(pos.NetPosition) ? -1 : pos.NetPosition;
             long positionYesterday = ITradeApi.IsDefaultValue(pos.PositionYesterday) ? -1 : pos.PositionYesterday;
             Console.WriteLine(string.Format(" InstID={0}, PositionYesDirection={1:d}, PositionYesterday={2:d}, BuyPosition={3:d}, SellPosition={4:d}, NetPosition={5:d}",
                 pos.InstrumentID, pos.PositionYesDirection, positionYesterday,
@@ -143,9 +143,9 @@ namespace SPTradeApiSimpleDemoCSharpCore2017
 
         static void PrintAccountInfo(Account acc)
         {
-            Console.WriteLine(string.Format("  Available={0:g}, NetAssetValue={1:g}, CommodityPL={2:g}, IMargin={3:g}, MMargin={4:g}, CreditLimit={5:g}, CashBal={6:g}\n",
-                acc.Available, acc.NetAssetValue, acc.CommodityPL, acc.IMargin,
-                acc.MMargin, acc.CreditLimit, acc.CashBal));
+            Console.WriteLine(string.Format("  Available={0:g}, StaticBalance={1:g}, CloseProfit={2:g}, CurrMargin={3:g}, MaintenanceMargin={4:g}, CreditLimit={5:g}, Balance={6:g}\n",
+                acc.Available, acc.StaticBalance, acc.CloseProfit, acc.CurrMargin,
+                acc.MaintenanceMargin, acc.CreditLimit, acc.Balance));
         }
 
         //////////////////////////////////////////////////////////////////////////////////
